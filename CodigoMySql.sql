@@ -1,5 +1,14 @@
+---*******************************************---
+---******* CREACION DE BASE DE DATOS *********---
+---*******************************************---
+
 CREATE DATABASE FeriaDeLibro;
 USE feriadelibro;
+
+
+---*******************************************---
+---********** CREACION DE TABLAS *************---
+---*******************************************---
 
 CREATE TABLE persona ( 
 	tipoDoc varchar(10) NOT NULL,
@@ -96,3 +105,44 @@ CREATE TABLE refiere (
     UPDATE CASCADE ON DELETE RESTRICT,
     PRIMARY KEY (tipoDoc, NroDocumento, ISBN)
 );
+
+
+---*******************************************---
+---************* CONSULTAS *******************---
+---*******************************************---
+
+USE feriadelibro;
+
+-- Inserto una persona en la tabla persona
+INSERT INTO persona (tipoDoc, NroDocumento, nombre, apellido, fechaNacimiento, telefono) 
+VALUES ("DNI", 41568728, "Pepito", "Director", "1999-12-10", 299567426);
+
+-- Agregar un lector a la base de datos. Tener en cuenta las restricciones de acuerdo a su DDL
+INSERT INTO lector (actividad, tipoDoc, NroDocumento) 
+VALUES ("leer", "DNI", 41568728);
+
+-- Insertar un nuevo tema en la tabla tema
+INSERT INTO tema(codigoIni, codigoFin, nombre)
+VALUES (1, 2, "Terror");
+INSERT INTO tema(codigoIni, codigoFin, nombre)
+VALUES (3, 4, "Pasion");
+INSERT INTO tema(codigoIni, codigoFin, nombre)
+VALUES (5, 6, "Romance");
+INSERT INTO tema(codigoIni, codigoFin, nombre)
+VALUES (7, 8, "Comedia");
+
+-- Insertar una feria en la tabla Feria 'HH:MM:SS'
+INSERT INTO feria(fechaInicio, horaApertura, codigoIni, codigoFin)
+VALUES ("2022-06-24", "10:00:00", 1, 2);
+INSERT INTO feria(fechaInicio, horaApertura, codigoIni, codigoFin)
+VALUES ("2022-06-24", "11:00:00", 3, 4);
+INSERT INTO feria(fechaInicio, horaApertura, codigoIni, codigoFin)
+VALUES ("2022-06-24", "12:00:00", 5, 6);
+INSERT INTO feria(fechaInicio, horaApertura, codigoIni, codigoFin)
+VALUES ("2022-06-24", "13:00:00", 7, 8);
+
+-- Actualizar la Hora de las ferias del viernes 24 de Junio de 2022: hora a actualizar 14:00
+UPDATE feria SET horaApertura = "14:00:00" WHERE idFeria = 1;
+UPDATE feria SET horaApertura = "14:00:00" WHERE idFeria = 2;
+UPDATE feria SET horaApertura = "14:00:00" WHERE idFeria = 3;
+UPDATE feria SET horaApertura = "14:00:00" WHERE idFeria = 4;
