@@ -216,10 +216,7 @@ UPDATE feria SET horaApertura = "14:00:00" WHERE fechaInicio = "2022-06-24";
 -- 3-C Borramos encargados que nunca fueron responsables de libros
 DELETE FROM encargado WHERE NOT EXISTS (SELECT * FROM libro WHERE encargado.NroDocumento = libro.NroDocumento);
 
--- Ejercicio 4 (a)
--- Seleccionar Numero de Lectura, NroCopia, ISBN, IdFeria de aquellas 
--- lecturas realizadas 1 dÃ­a posterior a
--- la fecha de apertura de la feria
+-- EJERCICIO 4
 
 -- Crear copias de libros
 INSERT INTO copia_libro (nroCopia, ISBN, nroMesa) 
